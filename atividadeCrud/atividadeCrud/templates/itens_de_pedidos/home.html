@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block 'conteudo' %}
+
+<h2>Itens</h2>
+
+<p>
+    <a href="{% url 'itens_de_pedidos.inserir' %}" class="btn btn-primary">
+        <i class="fa-solid fa-plus"></i> Adicionar Item Pedido
+    </a>
+</p>
+
+<table class="table table-hover">
+    <tr>
+        <th>Código</th>
+        <th>Pedido</th>
+        <th>Produto</th>
+        <th>Quantidade</th>
+    </tr>
+
+    {% for i in lista_itens %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.pedido }}</td>
+            <td>{{ i.produto }}</td>
+            <td>{{ i.quantidade }}</td>
+           
+            <td>
+                <a href="{% url 'itens_de_pedidos.editar' i.id %}">Editar</a>
+                <a href="{% url 'itens_de_pedidos.excluir' i.id %}" onclick="return confirm('Deseja excluir {{ i.nome }}?')">Excluir</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

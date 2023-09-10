@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block 'conteudo' %}
+
+<p><h1>Formulário</h1></p>
+
+<form method="POST" class="form">
+    {% csrf_token %}
+    
+    {% render_field frm.id %}
+
+    <div class="form-group">
+        <label>Nome:</label>
+        {% render_field frm.nome class="form-control" %}
+        {% if frm.nome.errors %}<small style="color: red;">{{ frm.nome.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Preço:</label>
+        {% render_field frm.preco class="form-control" %}
+        {% if frm.preco.errors %}<small style="color: red;">{{ frm.preco.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Descrição:</label>
+        {% render_field frm.desc class="form-control" %}
+        {% if frm.desc.errors %}<small style="color: red;">{{ frm.desc.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Estoque:</label>
+        {% render_field frm.estoque class="form-control" %}
+        {% if frm.estoque.errors %}<small style="color: red;">{{ frm.estoque.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Categoria:</label>
+        {% render_field frm.categoria class="form-control" %}
+    </div>
+
+    <div class="form-group">
+        <label>Fornecededor:</label>
+        {% render_field frm.fornecedor class="form-control" %}
+    </div>
+
+    <div class="form-group" style="margin-top: 12pt;">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{% url 'produtos.home' %}" class="btn btn-secondary">Voltar</a>
+    </div>
+    
+</form>
+
+{% endblock %}

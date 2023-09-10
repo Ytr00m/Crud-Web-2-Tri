@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block 'conteudo' %}
+
+<p><h1>Formulário</h1></p>
+
+<form method="POST" class="form">
+    {% csrf_token %}
+    
+    {% render_field frm.id %}
+
+
+    <div class="form-group">
+        <label>Data do Pedido:</label>
+        {% render_field frm.data class="form-control" %}
+        {% if frm.data.errors %}<small style="color: red;">{{ frm.data.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Data de entrega prevista:</label>
+        {% render_field frm.data_entrega_prev class="form-control" %}
+        {% if frm.data_entrega_prev.errors %}<small style="color: red;">{{ frm.data_entrega_prev.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Data de entraga real:</label>
+        {% render_field frm.data_entrega_real class="form-control" %}
+        {% if frm.data_entrega_real.errors %}<small style="color: red;">{{ frm.data_entrega_real.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Status do pedido:</label>
+        {% render_field frm.status class="form-control" %}
+        {% if frm.status.errors %}<small style="color: red;">{{ frm.status.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Valor total do pedido:</label>
+        {% render_field frm.valor_total class="form-control" %}
+        {% if frm.valor_total.errors %}<small style="color: red;">{{ frm.valor_total.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Cliente:</label>
+        {% render_field frm.cliente class="form-control" %}
+    </div>
+
+    <div class="form-group">
+        <label>Pagamento:</label>
+        {% render_field frm.pagamento class="form-control" %}
+    </div>
+    
+    <div class="form-group" style="margin-top: 12pt;">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{% url 'pedidos.home' %}" class="btn btn-secondary">Voltar</a>
+    </div>
+    {{frm.errors}}
+</form>
+
+{% endblock %}

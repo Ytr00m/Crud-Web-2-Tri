@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block 'conteudo' %}
+
+<h2>Fornecedores</h2>
+
+<p>
+    <a href="{% url 'fornecedores.inserir' %}" class="btn btn-primary">
+        <i class="fa-solid fa-plus"></i> Adicionar Fornecedor
+    </a>
+</p>
+
+<table class="table table-hover">
+    <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Endereço</th>
+        <th>E-mail</th>
+        <th>Telefone</th>
+    </tr>
+
+    {% for f in lista_fornecedores %}
+        <tr>
+            <td>{{ f.id }}</td>
+            <td>{{ f.nome }}</td>
+            <td>{{ f.endereco }}</td>
+            <td>{{ f.email }}</td>
+            <td>{{ f.telefone }}</td>
+            <td>
+                <a href="{% url 'fornecedores.editar' f.id %}">Editar</a>
+                <a href="{% url 'fornecedores.excluir' f.id %}" onclick="return confirm('Deseja excluir {{ f.nome }}?')">Excluir</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

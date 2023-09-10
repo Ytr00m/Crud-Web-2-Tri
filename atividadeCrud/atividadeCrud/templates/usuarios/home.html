@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block 'conteudo' %}
+
+<h2>Usuários</h2>
+
+<p>
+    <a href="{% url 'usuarios.inserir' %}" class="btn btn-primary">
+        <i class="fa-solid fa-plus"></i> Adicionar Usuário
+    </a>
+</p>
+
+<table class="table table-hover">
+    <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Senha</th>
+    </tr>
+
+    {% for u in lista_usuarios %}
+        <tr>
+            <td>{{ u.id }}</td>
+            <td>{{ u.nome }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.senha }}</td>
+            <td>
+                <a href="{% url 'usuarios.editar' u.id %}">Editar</a>
+                <a href="{% url 'usuarios.excluir' u.id %}" onclick="return confirm('Deseja excluir {{ u.nome }}?')">Excluir</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

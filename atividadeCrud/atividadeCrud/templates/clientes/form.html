@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block 'conteudo' %}
+
+<p><h1>Formulário</h1></p>
+
+<form method="POST" class="form">
+    {% csrf_token %}
+    
+    {% render_field frm.id %}
+
+    <div class="form-group">
+        <label>Nome:</label>
+        {% render_field frm.nome class="form-control" %}
+        {% if frm.nome.errors %}<small style="color: red;">{{ frm.nome.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>E-mail:</label>
+        {% render_field frm.email class="form-control" %}
+        {% if frm.email.errors %}<small style="color: red;">{{ frm.email.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Endereço:</label>
+        {% render_field frm.endereco class="form-control" %}
+    </div>
+
+    <div class="form-group">
+        <label>Data de Nascimento:</label>
+        {% render_field frm.datanasc class="form-control" %}
+        {% if frm.datanasc.errors %}<small style="color: red;">{{ frm.datanasc.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Telefone:</label>
+        {% render_field frm.telefone class="form-control" %}
+        {% if frm.telefone.errors %}<small style="color: red;">{{ frm.telefone.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Usuário:</label>
+        {% render_field frm.usuario class="form-control" %}
+    </div>
+    <div class="form-group" style="margin-top: 12pt;">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{% url 'clientes.home' %}" class="btn btn-secondary">Voltar</a>
+    </div>
+    
+</form>
+
+{% endblock %}

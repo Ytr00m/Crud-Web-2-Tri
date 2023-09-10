@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block 'conteudo' %}
+
+<p><h1>Formulário</h1></p>
+
+<form method="POST" class="form">
+    {% csrf_token %}
+    
+    {% render_field frm.id %}
+
+    <div class="form-group">
+        <label>Pedidos:</label>
+        {% render_field frm.pedido class="form-control" %}
+    </div>
+
+    <div class="form-group">
+        <label>Produtos:</label>
+        {% render_field frm.produto class="form-control" %}
+    </div>
+
+    <div class="form-group">
+        <label>Quantidade:</label>
+        {% render_field frm.quantidade class="form-control" %}
+    </div>
+
+
+    <div class="form-group" style="margin-top: 12pt;">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{% url 'itens_de_pedidos.home' %}" class="btn btn-secondary">Voltar</a>
+    </div>
+    
+</form>
+
+{% endblock %}

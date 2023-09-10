@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block 'conteudo' %}
+
+<h2>Clientes</h2>
+
+<p>
+    <a href="{% url 'clientes.inserir' %}" class="btn btn-primary">
+        <i class="fa-solid fa-plus"></i> Adicionar cliente
+    </a>
+</p>
+
+<table class="table table-hover">
+    
+    <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Endereço</th>
+        <th>Data de Nascimento</th>
+        <th>Telefone</th>
+        <th>Usuario</th>
+    </tr>
+
+    {% for c in lista_clientes %}
+        <tr>
+            <td>{{ c.id }}</td>
+            <td>{{ c.nome }}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.endereco }}</td>
+            <td>{{ c.datanasc }}</td>
+            <td>{{ c.telefone }}</td>
+            <td>{{ c.usuario }}</td>
+            <td> <a href="{% url 'clientes.editar' c.id %}">Editar</a>
+                <a href="{% url 'clientes.excluir' c.id %}" onclick="return confirm('Deseja excluir {{ c.nome }}?')">Excluir</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

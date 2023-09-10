@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block 'conteudo' %}
+
+<p><h1>Formulário</h1></p>
+
+<form method="POST" class="form">
+    {% csrf_token %}
+    
+    {% render_field frm.id %}
+
+    <div class="form-group">
+        <label>Nome:</label>
+        {% render_field frm.nome class="form-control" %}
+        {% if frm.nome.errors %}<small style="color: red;">{{ frm.nome.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>E-mail:</label>
+        {% render_field frm.email class="form-control" %}
+        {% if frm.email.errors %}<small style="color: red;">{{ frm.email.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Senha:</label>
+        {% render_field frm.senha class="form-control" %}
+        {% if frm.senha.errors %}<small style="color: red;">{{ frm.senha.errors.0 }}</small>{% endif %}
+    </div>
+
+
+    <div class="form-group" style="margin-top: 12pt;">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{% url 'usuarios.home' %}" class="btn btn-secondary">Voltar</a>
+    </div>
+    
+</form>
+
+{% endblock %}

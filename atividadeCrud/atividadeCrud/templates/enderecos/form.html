@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block 'conteudo' %}
+
+<form method="POST" class="form">
+    {% csrf_token %}
+    {% render_field form.id %}
+
+
+    <div class="form-group">
+        <label>Rua:</label>
+        {% render_field frm.rua class="form-control" %}
+        {% if frm.rua.errors %}<small style="color: red;">{{ frm.rua.errors.0 }}</small>{% endif %}        
+    </div>
+
+    <div class="form-group">
+        <label>Número:</label>
+        {% render_field frm.numero class="form-control" %}
+        {% if frm.numero.errors %}<small style="color: red;">{{ frm.numero.errors.0 }}</small>{% endif %}
+    </div>  
+
+    <div class="form-group">
+        <label>Complemento:</label>
+        {% render_field frm.complemento class="form-control" %}
+    </div>
+
+    <div class="form-group">
+        <label>Bairro:</label>
+        {% render_field frm.bairro class="form-control" %}
+        {% if frm.bairro.errors %}<small style="color: red;">{{ frm.bairro.errors.0 }}</small>{% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Cidade:</label>
+        {% render_field frm.cidade class="form-control" %}
+        {% if frm.cidade.errors %}<small style="color: red;">{{ frm.cidade.errors.0 }}</small>{% endif %}
+    </div> 
+
+    <div class="form-group">
+        <label>Estado:</label>
+        {% render_field frm.estado class="form-control" %}
+        {% if frm.estado.errors %}<small style="color: red;">{{ frm.estado.errors.0 }}</small>{% endif %}
+    </div> 
+
+    <div class="form-group">
+        <label>CEP:</label>
+        {% render_field frm.cep class="form-control" %}
+        {% if frm.cep.errors %}<small style="color: red;">{{ frm.cep.errors.0 }}</small>{% endif %}
+    </div> 
+
+    
+    <div class="form-group" style="margin-top: 12pt;">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{% url 'enderecos.home' %}" class="btn btn-secondary">Voltar</a>
+    </div>
+
+
+</form>
+
+{% endblock %}

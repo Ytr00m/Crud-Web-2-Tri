@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block 'conteudo' %}
+
+<h2>Compras</h2>
+
+<p>
+    <a href="{% url 'compras.inserir' %}" class="btn btn-primary">
+        <i class="fa-solid fa-plus"></i> Adicionar Compras
+    </a>
+</p>
+
+<table class="table table-hover">
+    <tr>
+        <th>Código</th>
+        <th>ID do Produto</th>
+        <th>Quantidade</th>
+        <th>Preço Unitário</th>
+        <th>Data da Compra</th>
+        <th>Comprador</th>
+        
+    </tr>
+
+    {% for compra in lista_compras %}
+        <tr>
+            <td>{{ compra.id }}</td>
+            <td>{{ compra.produto }}</td>
+            <td>{{ compra.quantidade }}</td>
+            <td>{{ compra.preco_unitario }}</td>
+            <td>{{ compra.data_compra }}</td>
+            <td>{{ compra.comprador }}</td>
+            <td>
+                <a href="{% url 'compras.editar' compra.id %}">Editar</a>
+                <a href="{% url 'compras.excluir' compra.id %}" onclick="return confirm('Deseja excluir {{ compra.nome }}?')">Excluir</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
