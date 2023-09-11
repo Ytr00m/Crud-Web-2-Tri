@@ -167,12 +167,12 @@ class Compras(models.Model):
     produto = models.IntegerField()
     quantidade = models.IntegerField(validators=quantidade_validators)
     preco_unitario = models.DecimalField(max_digits=10, decimal_places=2, validators=preco_validators)
-    data_compra = models.DateTimeField(auto_now_add=True)
+    data_compra = models.DateField()
     comprador = models.ForeignKey("Clientes", on_delete=models.SET_NULL, null=True, related_name='compras')
 
 class Itens_de_Pedidos(models.Model):
     pedido = models.ForeignKey('Pedidos', on_delete=models.CASCADE, related_name='itensPedidos')
-    produto = models.ForeignKey('Produtos', on_delete=models.DO_NOTHING, related_name='pedidos')
+    produto = models.ForeignKey('Produtos', on_delete=models.SET_NULL, null=True,blank=True, related_name='pedidos')
     quantidade = models.IntegerField()
 
 

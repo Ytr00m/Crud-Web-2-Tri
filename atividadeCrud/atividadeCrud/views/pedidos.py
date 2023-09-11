@@ -36,6 +36,6 @@ def editar(request: HttpRequest, id):
     })
 
 def excluir(request, id):
-    pedidos = get_object_or_404(Clientes, pk= id)
+    pedidos = get_object_or_404(Pedidos, pk= id)
     pedidos.delete()
     return redirect('pedidos.home')

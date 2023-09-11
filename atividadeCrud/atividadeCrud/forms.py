@@ -35,7 +35,8 @@ class PedidosForm(ModelForm):
 
         if (entrega_real - data_pedido).days <= 0:
             self.add_error('data_entrega_real', "Data de Entrega Real deve ser posterior a data do Pedido.")
-
+        
+        return dados
 
 class FornecedorForm(ModelForm):
     class Meta:
